@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <changeSet author="pablo (generated)" id="1504476726099-1">
+    <changeSet author="pablo (generated)" id="1505176666365-1">
         <createTable tableName="boleta">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="boletaPK"/>
@@ -11,18 +11,14 @@
             <column name="urna_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="legisladores" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
+            <column name="legisladores" type="BIGINT"/>
             <column name="partido_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="diputados" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
+            <column name="diputados" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="pablo (generated)" id="1504476726099-2">
+    <changeSet author="pablo (generated)" id="1505176666365-2">
         <createTable tableName="mesa">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="mesaPK"/>
@@ -35,7 +31,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="pablo (generated)" id="1504476726099-3">
+    <changeSet author="pablo (generated)" id="1505176666365-3">
         <createTable tableName="partido">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="partidoPK"/>
@@ -54,7 +50,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="pablo (generated)" id="1504476726099-4">
+    <changeSet author="pablo (generated)" id="1505176666365-4">
         <createTable tableName="urna">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="urnaPK"/>
@@ -67,13 +63,13 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="pablo (generated)" id="1504476726099-5">
+    <changeSet author="pablo (generated)" id="1505176666365-5">
         <addForeignKeyConstraint baseColumnNames="mesa_id" baseTableName="urna" constraintName="FKbyjbymcvr07y0hg94qwil1lov" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="mesa"/>
     </changeSet>
-    <changeSet author="pablo (generated)" id="1504476726099-6">
+    <changeSet author="pablo (generated)" id="1505176666365-6">
         <addForeignKeyConstraint baseColumnNames="urna_id" baseTableName="boleta" constraintName="FKdmk5u6579uppe9exvlq7bpic3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="urna"/>
     </changeSet>
-    <changeSet author="pablo (generated)" id="1504476726099-7">
+    <changeSet author="pablo (generated)" id="1505176666365-7">
         <addForeignKeyConstraint baseColumnNames="partido_id" baseTableName="boleta" constraintName="FKe06uemevfanat18bjrw6m13el" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="partido"/>
     </changeSet>
 </databaseChangeLog>

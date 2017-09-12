@@ -3,7 +3,6 @@ package fiscalizacionne
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-//@Transactional(readOnly = true)
 class PartidoController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -35,15 +34,10 @@ class PartidoController {
         }
 
         try {
-            request.withFormat {
-                form multipartForm {
-                    flash.message = message(code: 'default.created.message', args: [message(code: 'partido.label', default: 'Partido'), partido.id])
-                    redirect partido
-                }
-                '*' { respond partido, [status: CREATED] }
-            }
+            partidoService.crearPartido(partido)
+            redirect(action: 'show', id:partido.id, model: [partido:partido])
         } catch (Exception e){
-
+            render(view: 'create', model: [partido: partido])
         }
     }
 
@@ -51,7 +45,6 @@ class PartidoController {
         respond partido
     }
 
-    @Transactional
     def update(Partido partido) {
         if (partido == null) {
             transactionStatus.setRollbackOnly()
@@ -76,7 +69,6 @@ class PartidoController {
         }
     }
 
-    @Transactional
     def delete(Partido partido) {
 
         if (partido == null) {

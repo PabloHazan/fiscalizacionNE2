@@ -3,14 +3,14 @@ package fiscalizacionne
 class PartidoService {
 
     def crearPartido(Partido partido){
-        partido.save()
+        partido.save(failOnError:true)
         def urnas = Urna.all
         urnas.each {urna ->
             def boleta = new Boleta()
             boleta.partido = partido
-            boleta.save()
             urna.addToBoletas(boleta)
-            urna.save()
+            urna.save(failOnError:true)
+            boleta.save(failOnError:true)
         }
     }
 }

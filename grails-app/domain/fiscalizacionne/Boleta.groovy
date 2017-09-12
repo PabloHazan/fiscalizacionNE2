@@ -9,5 +9,7 @@ class Boleta {
     static belongsTo = [urna: Urna]
 
     static constraints = {
+        diputados nullable: true
+        legisladores nullable: true
     }
 }

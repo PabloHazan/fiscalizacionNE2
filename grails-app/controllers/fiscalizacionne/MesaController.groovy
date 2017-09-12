@@ -23,10 +23,6 @@ class MesaController {
 
     def save(Mesa mesa) {
         mesa.numero = params.numero.toLong()
-        println mesa.numero
-        println mesa.numero
-        println mesa.numero
-        println mesa.numero
         if (mesa == null) {
             notFound()
             return
@@ -41,6 +37,7 @@ class MesaController {
             mesaService.crearMesa(mesa)
             redirect(action: 'show', id:mesa.id ,model: [mesa:mesa, status: CREATED])
         } catch (Exception e){
+            log.error(e.message)
             render(view: 'create', model: [mesa:mesa])
         }
 
@@ -80,15 +77,11 @@ class MesaController {
             notFound()
             return
         }
-
-        mesaService.borrarMesa(mesa)
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'mesa.label', default: 'Mesa'), mesa.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
+        try {
+            mesaService.borrarMesa(mesa)
+            redirect(action: 'index')
+        }catch (Exception e){
+            log.error(e.message)
         }
     }
 
