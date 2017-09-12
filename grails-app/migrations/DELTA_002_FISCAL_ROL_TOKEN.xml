@@ -1,0 +1,88 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="pablo (generated)" id="1505251897867-1">
+        <createTable tableName="fiscal">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="fiscalPK"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_expired" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_locked" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account_expired" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1505251897867-2">
+        <createTable tableName="fiscal_rol">
+            <column name="fiscal_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rol_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1505251897867-3">
+        <createTable tableName="rol">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="rolPK"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1505251897867-4">
+        <createTable tableName="token">
+            <column name="series" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_used" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1505251897867-5">
+        <addPrimaryKey columnNames="fiscal_id, rol_id" constraintName="fiscal_rolPK" tableName="fiscal_rol"/>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1505251897867-6">
+        <addPrimaryKey columnNames="series" constraintName="tokenPK" tableName="token"/>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1505251897867-7">
+        <addUniqueConstraint columnNames="username" constraintName="UC_FISCALUSERNAME_COL" tableName="fiscal"/>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1505251897867-8">
+        <addUniqueConstraint columnNames="authority" constraintName="UC_ROLAUTHORITY_COL" tableName="rol"/>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1505251897867-9">
+        <addForeignKeyConstraint baseColumnNames="rol_id" baseTableName="fiscal_rol" constraintName="FK4j2lkl0yd3dxxl8a1ym6bfrtk" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="rol"/>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1505251897867-10">
+        <addForeignKeyConstraint baseColumnNames="fiscal_id" baseTableName="fiscal_rol" constraintName="FKl2v1rsm8hdu1mw37h7p03ndjc" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="fiscal"/>
+    </changeSet>
+</databaseChangeLog>
