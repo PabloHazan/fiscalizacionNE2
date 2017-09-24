@@ -1,5 +1,7 @@
 package fiscalizacionne
 
+import command.MesaCommand
+
 class MesaService {
 
     def crearMesa(Mesa mesa){
@@ -33,6 +35,21 @@ class MesaService {
         }
         urna.delete(flush:true)
         mesa.delete(flush:true)
+    }
+
+    MesaCommand get(Long id){
+        Mesa mesa = Mesa.get(id)
+        MesaCommand mesaCommand = new MesaCommand()
+        mesaCommand.id = mesa.id
+        mesaCommand.versionValue = mesa.version
+        mesaCommand.numero = mesa.numero
+        return mesaCommand
+    }
+
+    List<MesaCommand> get(List<Long> ids){
+        List<MesaCommand> mesas = []
+        ids.each {id -> mesas.add(get(id))}
+        return mesas
     }
 
 }

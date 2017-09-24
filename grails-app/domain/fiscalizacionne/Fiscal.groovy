@@ -17,6 +17,7 @@ class Fiscal implements Serializable {
     boolean accountExpired
     boolean accountLocked
     boolean passwordExpired
+    String mail
 
     Set<Rol> getAuthorities() {
         (FiscalRol.findAllByFiscal(this) as List<FiscalRol>)*.rol as Set<Rol>
@@ -24,6 +25,7 @@ class Fiscal implements Serializable {
 
     static constraints = {
         password nullable: false, blank: false, password: true
+        username nullable: false, blank: false, unique: true
         username nullable: false, blank: false, unique: true
     }
 

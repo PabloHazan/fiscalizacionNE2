@@ -18,8 +18,8 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${fiscalList}" />
-
+            <g:render template="fiscalTable" model="[fiscales: fiscalList]"/>
+            <g:render template="asignarFiscalModal"/>
             <div class="pagination">
                 <g:paginate total="${fiscalCount ?: 0}" />
             </div>

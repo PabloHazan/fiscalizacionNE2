@@ -5,6 +5,7 @@
             <![CDATA[
                 insert into rol (version, authority) values (0, 'ROLE_FISCAL_GENERAL');
                 insert into rol (version, authority) values (0, 'ROLE_FISCAL_MESA');
+                insert into rol (version, authority) values (0, 'ROLE_ADMIN_COMUNA');
             ]]>
         </sql>
     </changeSet>

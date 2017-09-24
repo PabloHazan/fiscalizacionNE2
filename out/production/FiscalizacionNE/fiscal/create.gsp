@@ -25,18 +25,10 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.fiscal}" method="POST">
-                <fieldset class="form">
-                    <div class="col-md-4"
-                    <label for="username">Nombre de usuiario</label><br/>
-                    <g:textField id="username" name="username" value="${this.fiscal?.username}"/>
-                    <br/>
-                    <label for="mail">Email</label><br/>
-                    <g:field type="email" id="mail" name="mail" value="${this.fiscal?.email}"/>
-
-                </fieldset>
-                <fieldset class="buttons">
-                    <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+            <g:form method="POST" controller="fiscal" action="save">
+                <g:render template="fiscalForm" model="[fiscal: this.fiscal,
+                                                        modoEdicion: true]"/>
+                <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                 </fieldset>
             </g:form>
         </div>

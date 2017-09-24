@@ -1,0 +1,39 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="pablo (generated)" id="1506209467314-1">
+        <createTable tableName="comuna_fuerza_politica">
+            <column name="comuna_fuerzas_politicas_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fuerza_politica_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1506209467314-2">
+        <createTable tableName="fuerza_politica">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="fuerza_politicaPK"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nombre" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="color" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1506209467314-3">
+        <addUniqueConstraint columnNames="numero" constraintName="UC_COMUNANUMERO_COL" tableName="comuna"/>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1506209467314-4">
+        <addUniqueConstraint columnNames="nombre" constraintName="UC_FUERZA_POLITICANOMBRE_COL" tableName="fuerza_politica"/>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1506209467314-5">
+        <addForeignKeyConstraint baseColumnNames="comuna_fuerzas_politicas_id" baseTableName="comuna_fuerza_politica" constraintName="FKsq6xykb4xw9qmc2u6d87btb1n" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="comuna"/>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1506209467314-6">
+        <addForeignKeyConstraint baseColumnNames="fuerza_politica_id" baseTableName="comuna_fuerza_politica" constraintName="FKt0c94309kfu32mouofgpy9yuu" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="fuerza_politica"/>
+    </changeSet>
+</databaseChangeLog>

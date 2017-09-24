@@ -3,6 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+
     <title>
         <g:layoutTitle default="Grails"/>
     </title>
@@ -34,6 +36,11 @@
                     <g:pageProperty name="page.nav" />
                 </ul>
             </div>
+            <sec:ifLoggedIn>
+                <div class="pull-right">
+                    <g:link controller='logout' action='index' method="POST">Chau</g:link>
+                </div>
+            </sec:ifLoggedIn>
         </div>
     </div>
 

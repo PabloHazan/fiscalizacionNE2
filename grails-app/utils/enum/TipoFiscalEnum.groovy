@@ -14,4 +14,9 @@ enum TipoFiscalEnum {
         this.nombre = nombre
         this.authority = authority
     }
+
+    static TipoFiscalEnum findByAuthority(String authority){
+        return fiscalizacionne.TipoFiscalEnum.values().find {it.authority==authority}
+    }
+
 }

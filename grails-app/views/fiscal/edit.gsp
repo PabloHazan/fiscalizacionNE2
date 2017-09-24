@@ -26,11 +26,8 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.fiscal}" method="PUT">
-                <g:hiddenField name="version" value="${this.fiscal?.version}" />
-                <fieldset class="form">
-                    <f:all bean="fiscal"/>
-                </fieldset>
+            <g:form method="PUT" action="update">
+                <g:render template="fiscalForm" model="[fiscal:fiscal, modoEdicion:true]"/>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
                 </fieldset>

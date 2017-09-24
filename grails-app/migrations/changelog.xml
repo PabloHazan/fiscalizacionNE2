@@ -4,4 +4,10 @@
     <include file="DELTA_002_FISCAL_ROL_TOKEN.xml"/>
     <include file="DELTA_003_AGREGAR_ADMIN.xml"/>
     <include file="DELTA_004_ROLES_FISCALES.xml"/>
+    <include file="DELTA_005_FISCAL_DE_MESA.xml"/>
+    <include file="DELTA_007_FISCAL_MAIL.xml"/>
+    <include file="DELTA_008_TOKEN_REST.xml"/>
+    <include file="DELTA_009_ESCUELA.xml"/>
+    <include file="DELTA_010_COMUNA.xml"/>
+    <include file="DELTA_011_FUERZA_POLITICA.xml"/>
 </databaseChangeLog>

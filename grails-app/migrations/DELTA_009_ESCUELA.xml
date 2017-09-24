@@ -1,0 +1,31 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="pablo (generated)" id="1505694250731-1">
+        <createTable tableName="escuela">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="escuelaPK"/>
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fiscal_id" type="BIGINT">
+            </column>
+            <column name="numero" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1505694250731-2">
+        <addColumn tableName="mesa">
+            <column name="escuela_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1505694250731-3">
+        <addForeignKeyConstraint baseColumnNames="fiscal_id" baseTableName="escuela" constraintName="FKct21yeeavilyiufbiynoje9ul" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="fiscal"/>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1505694250731-4">
+        <addForeignKeyConstraint baseColumnNames="escuela_id" baseTableName="mesa" constraintName="FKp9erj826xg92yky0djnpmd5v6" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="escuela"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,6 +1,5 @@
 package command
 
-import fiscalizacionne.TipoFiscalEnum
 import grails.validation.Validateable
 
 /**
@@ -8,11 +7,14 @@ import grails.validation.Validateable
  */
 
 class FiscalCommand implements Validateable {
+    Long id
+    Long versionValue
     String username
     String mail
-    TipoFiscalEnum tipoFiscal
 
     static constraints = {
+        id nullable: true
+        versionValue nullable:true
         username nullable: false, blank: false
         mail nullable: false, blank: false, mail:true
 
