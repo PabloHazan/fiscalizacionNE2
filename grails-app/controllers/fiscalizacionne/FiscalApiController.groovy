@@ -1,5 +1,6 @@
 package fiscalizacionne
 
+import common.ServiceException
 import dto.response.MesaDTO
 import dto.response.PartidoDTO
 import dto.response.ResultadoMesaDTO
@@ -12,7 +13,7 @@ class FiscalApiController {
     def fiscalService
     def partidoService
 
-    static allowedMethods = [cargarMesa: "POST"]
+    static allowedMethods = [cargarMesas: "POST"]
 
     def getMesas(){
         Fiscal fiscal = usuarioService.getLoggedUser()
@@ -28,7 +29,18 @@ class FiscalApiController {
     def cargarMesas(){
         Fiscal fiscal = usuarioService.getLoggedUser()
         List<ResultadoMesaDTO> resultadosMesas = getRequestDTO()
-        fiscalService.cargarResultados(fiscal, resultadosMesas)
+        try{
+            fiscalService.cargarResultados(fiscal, resultadosMesas)
+            render "OK"
+        }catch (ServiceException se){
+            response.status = 403
+            render se.message
+        }
+        catch (Exception e){
+            log.error(e.message)
+            response.status = 500
+            render "Error"
+        }
     }
 
     def getResultados(){

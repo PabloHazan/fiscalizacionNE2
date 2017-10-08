@@ -17,7 +17,7 @@ class PartidoService {
     }
 
     List<PartidoDTO> getPartidos(){
-        List<PartidoDTO> partidos
+        List<PartidoDTO> partidos = []
         Partido.all.each {partido ->
             partidos << toResponseDTO(partido)
         }

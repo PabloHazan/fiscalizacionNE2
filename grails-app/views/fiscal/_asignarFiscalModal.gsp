@@ -21,23 +21,20 @@
                                           noSelection="['':'-Seleccione un tipo-']"
                                 />
                             </div>
-                            <div id="seccionMesa" class="col-md-6">
-                                <label for="mesaSeleccionada">Mesa: </label>
-                                <g:select name="idMesa" id="mesaSeleccionada" from="${fiscalizacionne.Mesa.findAllByFiscalIsNull()}"
-                                          optionValue="numero"
-                                          optionKey="id"
-                                          noSelection="['':'-Seleccione una mesa-']"
-                                          onclick="mostrarEscuelas()"
-                                />
-                            </div>
                             <div id="seccionGeneral" class="col-md-6">
                                 <label for="escuelaSeleccionada">Escuela: </label>
                                 <g:select name="idEscuela" id="escuelaSeleccionada" from="${fiscalizacionne.Escuela.findAllByFiscalIsNull()}"
                                           optionValue="numero"
                                           optionKey="id"
                                           noSelection="['':'-Seleccione una escuela-']"
+                                          onChange="changeEscuela()"
                                 />
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="seccionMesa" class="col-md-6"/>
                         </div>
                     </div>
                 </div>
@@ -52,7 +49,6 @@
                     </button>
                 </div>
             </g:form>
-
         </div>
     </div>
 </div>
@@ -68,7 +64,7 @@
     }
 
     function iniciarModalAsignacionFiscal() {
-        changedTipo()
+        changedTipo();
         $('#asignarFiscal').modal('show');
 
     }
@@ -77,17 +73,18 @@
         var tipoSeleccionado = $('#tipoFiscalSeleccionado').val();
         if(tipoSeleccionado == '${fiscalizacionne.TipoFiscalEnum.GENERAL.authority}'){
             mostrarSeccionGeneral();
+
         } else if (tipoSeleccionado == '${fiscalizacionne.TipoFiscalEnum.MESA.authority}'){
-            mostrarSeccionMesa();
+            mostrarSeccionGeneral();
         } else {
             ocultarTodo()
         }
     }
 
-    function mostrarSeccionMesa(){
-        $('#seccionMesa').show();
-        $('#seccionGeneral').hide();
-    }
+//    function mostrarSeccionMesa(){
+//        $('#seccionMesa').show();
+//        $('#seccionGeneral').hide();
+//    }
 
     function mostrarSeccionGeneral(){
         $('#seccionMesa').hide();
@@ -97,6 +94,24 @@
     function ocultarTodo() {
         $('#seccionMesa').hide();
         $('#seccionGeneral').hide();
+    }
+    
+    function changeEscuela() {
+        var tipoSeleccionado = $('#tipoFiscalSeleccionado').val();
+        if (tipoSeleccionado == '${fiscalizacionne.TipoFiscalEnum.MESA.authority}'){
+            var url = document.location.origin + "/fiscal/getMesasPorEscuela";
+            var escuelaId = $("#escuelaSeleccionada").val();
+            $.ajax({
+                url: url,
+                data: {
+                    escuelaId: escuelaId
+                },
+                success: function (data) {
+                    $("#seccionMesa").html(data);
+                    $("#seccionMesa").show();
+                }
+            });
+        }
     }
 
 </script>

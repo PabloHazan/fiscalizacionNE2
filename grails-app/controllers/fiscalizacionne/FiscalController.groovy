@@ -158,4 +158,11 @@ class FiscalController {
         fiscal.save(failOnError:true, flush:true)
         redirect(action: 'index')
     }
+
+    def getMesasPorEscuela(){
+        println params
+        Long escuelaId = params.escuelaId.toLong()
+        List<Mesa> mesas = Escuela.get(escuelaId).mesas.findAll {mesa -> mesa.fiscal == null}.toList()
+        render(template: "selectMesasPorEscuela", model: [mesas: mesas])
+    }
 }
