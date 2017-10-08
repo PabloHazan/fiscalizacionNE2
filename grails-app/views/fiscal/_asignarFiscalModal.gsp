@@ -76,15 +76,11 @@
 
         } else if (tipoSeleccionado == '${fiscalizacionne.TipoFiscalEnum.MESA.authority}'){
             mostrarSeccionGeneral();
+            changeEscuela();
         } else {
             ocultarTodo()
         }
     }
-
-//    function mostrarSeccionMesa(){
-//        $('#seccionMesa').show();
-//        $('#seccionGeneral').hide();
-//    }
 
     function mostrarSeccionGeneral(){
         $('#seccionMesa').hide();
@@ -101,16 +97,18 @@
         if (tipoSeleccionado == '${fiscalizacionne.TipoFiscalEnum.MESA.authority}'){
             var url = document.location.origin + "/fiscal/getMesasPorEscuela";
             var escuelaId = $("#escuelaSeleccionada").val();
-            $.ajax({
-                url: url,
-                data: {
-                    escuelaId: escuelaId
-                },
-                success: function (data) {
-                    $("#seccionMesa").html(data);
-                    $("#seccionMesa").show();
-                }
-            });
+            if (escuelaId){
+                $.ajax({
+                    url: url,
+                    data: {
+                        escuelaId: escuelaId
+                    },
+                    success: function (data) {
+                        $("#seccionMesa").html(data);
+                        $("#seccionMesa").show();
+                    }
+                });
+            }
         }
     }
 

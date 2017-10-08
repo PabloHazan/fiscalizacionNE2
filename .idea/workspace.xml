@@ -39,8 +39,8 @@
       <file leaf-file-name="_asignarFiscalModal.gsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/views/fiscal/_asignarFiscalModal.gsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="110" column="35" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
+            <state relative-caret-position="1962">
+              <caret line="109" column="19" selection-start-line="109" selection-start-column="19" selection-end-line="109" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -49,8 +49,8 @@
       <file leaf-file-name="FiscalApiController.groovy" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/controllers/fiscalizacionne/FiscalApiController.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+            <state relative-caret-position="198">
+              <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
               <folding>
                 <element signature="e#25#55#0" expanded="true" />
               </folding>
@@ -58,20 +58,40 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FiscalService.groovy" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/services/fiscalizacionne/FiscalService.groovy">
+      <file leaf-file-name="FiscalController.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/controllers/fiscalizacionne/FiscalController.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="136" column="9" selection-start-line="136" selection-start-column="9" selection-end-line="136" selection-end-column="9" />
+            <state relative-caret-position="220">
+              <caret line="165" column="42" selection-start-line="165" selection-start-column="42" selection-end-line="165" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FiscalService.groovy" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/grails-app/services/fiscalizacionne/FiscalService.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="130" column="26" selection-start-line="130" selection-start-column="12" selection-end-line="130" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UsuarioService.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/services/fiscalizacionne/UsuarioService.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="35" column="56" selection-start-line="35" selection-start-column="56" selection-end-line="35" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grails-app/conf/application.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
+            <state relative-caret-position="2952">
               <caret line="164" column="17" selection-start-line="164" selection-start-column="17" selection-end-line="164" selection-end-column="17" />
               <folding />
             </state>
@@ -1019,7 +1039,6 @@
         <option value="$PROJECT_DIR$/grails-app/views/comuna/_fuerzaPoliticaRow.gsp" />
         <option value="$PROJECT_DIR$/grails-app/controllers/fiscalizacionne/ComunaController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/services/fiscalizacionne/ComunaService.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/services/fiscalizacionne/UsuarioService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/conf/application.groovy" />
         <option value="$PROJECT_DIR$/src/main/webapp/dto/response/MesaDTO.groovy" />
         <option value="$PROJECT_DIR$/grails-app/utils/dto/response/MesaDTO.groovy" />
@@ -1028,7 +1047,6 @@
         <option value="$PROJECT_DIR$/grails-app/utils/dto/response/ResultadoMesaDTO.groovy" />
         <option value="$PROJECT_DIR$/grails-app/utils/dto/response/ResultadoPartidoMesaDTO.groovy" />
         <option value="$PROJECT_DIR$/grails-app/domain/fiscalizacionne/Urna.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/services/fiscalizacionne/FiscalService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/domain/fiscalizacionne/Partido.groovy" />
         <option value="$PROJECT_DIR$/grails-app/migrations/changelog.xml" />
         <option value="$PROJECT_DIR$/grails-app/views/partido/create.gsp" />
@@ -1037,7 +1055,6 @@
         <option value="$PROJECT_DIR$/grails-app/views/partido/edit.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/fiscal/_selectMesaPorEscuela.gsp" />
         <option value="$PROJECT_DIR$/grails-app/controllers/fiscalizacionne/FiscalController.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/views/fiscal/_asignarFiscalModal.gsp" />
         <option value="$PROJECT_DIR$/grails-app/views/fiscal/_selectMesasPorEscuela.gsp" />
         <option value="$PROJECT_DIR$/grails-app/services/fiscalizacionne/PartidoService.groovy" />
         <option value="$PROJECT_DIR$/grails-app/utils/ServiceException.groovy" />
@@ -1045,6 +1062,9 @@
         <option value="$PROJECT_DIR$/grails-app/utils/common/ServiceException.groovy" />
         <option value="$PROJECT_DIR$/grails-app/controllers/fiscalizacionne/FiscalApiController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/conf/application.yml" />
+        <option value="$PROJECT_DIR$/grails-app/views/fiscal/_asignarFiscalModal.gsp" />
+        <option value="$PROJECT_DIR$/grails-app/services/fiscalizacionne/FiscalService.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/services/fiscalizacionne/UsuarioService.groovy" />
       </list>
     </option>
   </component>
@@ -1894,12 +1914,12 @@
       <workItem from="1507417329032" duration="793000" />
       <workItem from="1507418152094" duration="599000" />
       <workItem from="1507418797575" duration="69000" />
-      <workItem from="1507418902964" duration="11568000" />
+      <workItem from="1507418902964" duration="13756000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="227898000" />
+    <option name="totallyTimeSpent" value="230086000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1924,7 +1944,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30092594" sideWeight="0.48480123" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.48480123" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24941543" sideWeight="0.4524887" order="0" side_tool="false" content_ui="combo" />
@@ -2405,13 +2425,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/services/fiscalizacionne/UsuarioService.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="23" column="99" selection-start-line="23" selection-start-column="83" selection-end-line="23" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/dto/response/MesaDTO.groovy" />
     <entry file="file://$PROJECT_DIR$/grails-app/utils/dto/response/PartidoDTO.groovy">
       <provider selected="true" editor-type-id="text-editor">
@@ -2601,22 +2614,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/fiscalizacionne/FiscalController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="165" column="42" selection-start-line="165" selection-start-column="42" selection-end-line="165" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/fiscal/_asignarFiscalModal.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="110" column="35" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/utils/dto/response/ResultadoMesaDTO.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -2643,28 +2640,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/conf/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2952">
+          <caret line="164" column="17" selection-start-line="164" selection-start-column="17" selection-end-line="164" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/fiscalizacionne/FiscalController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="165" column="42" selection-start-line="165" selection-start-column="42" selection-end-line="165" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/views/fiscal/_asignarFiscalModal.gsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1962">
+          <caret line="109" column="19" selection-start-line="109" selection-start-column="19" selection-end-line="109" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/grails-app/controllers/fiscalizacionne/FiscalApiController.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+        <state relative-caret-position="198">
+          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
           <folding>
             <element signature="e#25#55#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/services/fiscalizacionne/FiscalService.groovy">
+    <entry file="file://$PROJECT_DIR$/grails-app/services/fiscalizacionne/UsuarioService.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="136" column="9" selection-start-line="136" selection-start-column="9" selection-end-line="136" selection-end-column="9" />
+        <state relative-caret-position="288">
+          <caret line="35" column="56" selection-start-line="35" selection-start-column="56" selection-end-line="35" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/conf/application.yml">
+    <entry file="file://$PROJECT_DIR$/grails-app/services/fiscalizacionne/FiscalService.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="164" column="17" selection-start-line="164" selection-start-column="17" selection-end-line="164" selection-end-column="17" />
+        <state relative-caret-position="168">
+          <caret line="130" column="26" selection-start-line="130" selection-start-column="12" selection-end-line="130" selection-end-column="26" />
           <folding />
         </state>
       </provider>

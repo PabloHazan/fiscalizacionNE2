@@ -25,6 +25,18 @@ class UsuarioService {
         }
     }
 
+    Boolean isFiscalMesa (Fiscal usuario){
+        return usuario.authorities.any {role ->
+            role.authority.equals("ROLE_FISCAL_MESA")
+        }
+    }
+
+    Boolean isFiscalGeneral(Fiscal usuario){
+        return usuario.authorities.any {role ->
+            role.authority.equals("ROLE_FISCAL_GENERAL")
+        }
+    }
+
     Fiscal getLoggedUser(){
         return springSecurityService.currentUser
     }

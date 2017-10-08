@@ -128,8 +128,14 @@ class FiscalService {
 
     List<MesaDTO> getMesas(Fiscal fiscal){
         List<MesaDTO> mesas = []
-        Mesa.findAllByFiscal(fiscal).each { Mesa mesa ->
-            return mesas.add(mesaService.toResponseDTO(mesa))
+        if (usuarioService.isFiscalMesa(fiscal)){
+            Mesa.findAllByFiscal(fiscal).each { Mesa mesa ->
+                return mesas.add(mesaService.toResponseDTO(mesa))
+            }
+        }else if (usuarioService.isFiscalGeneral(fiscal)){
+            Escuela.findByFiscal(fiscal)?.mesas?.each {mesa ->
+                return mesas.add(mesaService.toResponseDTO(mesa))
+            }
         }
         return mesas
     }
