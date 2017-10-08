@@ -1,7 +1,7 @@
 package fiscalizacionne
 
 import command.ComunaCommand
-import command.EscuelaCommand
+import command.EscuelaComunaCommand
 import command.FiscalCommand
 
 import static org.springframework.http.HttpStatus.*
@@ -148,22 +148,22 @@ class ComunaController {
         admin.mail = params.mail ?: null
     }
 
-    private void bindEscuelas(List<EscuelaCommand> escuelas, Map map){
-        for(elem in  map.keySet().findAll {it.toString().isNumber()}) {
-            EscuelaCommand escuela = new EscuelaCommand()
+    private void bindEscuelas(List<EscuelaComunaCommand> escuelas, Map map){
+        for(elem in  map?.keySet().findAll {it.toString().isNumber()}) {
+            EscuelaComunaCommand escuela = new EscuelaComunaCommand()
             bindEscuela(escuela,map[elem])
             escuelas.add(escuela)
         }
     }
 
-    private void bindEscuela(EscuelaCommand escuela, Map params){
+    private void bindEscuela(EscuelaComunaCommand escuela, Map params){
         escuela.id = params.id? params.id?.toLong() : null
         escuela.versionValue = params.versionValue? params.versionValue?.toLong() : null
         escuela.numero = params.numero? params.numero?.toLong() : null
     }
 
     private void bindFuerzasPoliticas(List<FuerzaPolitica> fuerzasPoliticas, Map map){
-        for(elem in  map.keySet().findAll {it.toString().isNumber()}) {
+        for(elem in  map?.keySet().findAll {it.toString().isNumber()}) {
             if(map[elem]["cbPertenece"] == "on"){
                 FuerzaPolitica fuerzaPolitica = new FuerzaPolitica()
                 bindFuerzaPolitica(fuerzaPolitica, map[elem])
@@ -176,5 +176,6 @@ class ComunaController {
         fuerzaPolitica.id = params.id? params.id?.toLong() : null
         fuerzaPolitica.version = params.version? params.version?.toLong() : null
         fuerzaPolitica.nombre = params.nombre ?: null
+        fuerzaPolitica.color = params.color?.isNumber() ? params.color.toLong() : null
     }
 }

@@ -19,15 +19,5 @@
                 <span id="mail">${this.fiscal?.mail}</span>
             </g:else>
         </div>
-        <div class="col-md-4">
-        <label for="tipo">Tipo</label>
-        %{--<g:if test="${modoEdicion}">--}%
-            %{--<g:select id="tipo" name="tipoFiscal" from="${fiscalizacionne.TipoFiscalEnum}"--}%
-                      %{--optionValue="nombre"--}%
-            %{--/>--}%
-        %{--</g:if><g:else>--}%
-            <span id="tipo">HARDCODEADO</span>
-        %{--</g:else>--}%
-        </div>
     </fieldset>
 </div>

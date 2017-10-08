@@ -11,7 +11,7 @@ class ComunaCommand implements Validateable{
     Long versionValue
     Long numero
     FiscalCommand admin
-    List<EscuelaCommand> escuelas
+    List<EscuelaComunaCommand> escuelas
     List<FuerzaPolitica> fuerzasPoliticas
 
     public ComunaCommand(){

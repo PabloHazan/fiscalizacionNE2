@@ -23,7 +23,11 @@
                 <div class="col-md-6">
                     <table class="table table-striped">
                         <thead>
-                            <tr>Fuerza</tr>
+                            <tr>
+                                <th>
+                                    Fuerza Política
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
                         <g:each in="${fuerzasPoliticas}" var="fuerzaPolitica">

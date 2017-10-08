@@ -31,7 +31,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/fiscal/edit',	 access: ['ROLE_ADMIN', 'ROLE_ADMIN_COMUNA']],
 	[pattern: '/fiscal/update',  access: ['ROLE_ADMIN', 'ROLE_ADMIN_COMUNA']],
 	[pattern: '/fiscal/delete',  access: ['ROLE_ADMIN', 'ROLE_ADMIN_COMUNA']],
-	[pattern: '/fiscal/editPass',access: ['fullyAuthenticated']],
+	[pattern: '/fiscal/editPass',access: 'isAuthenticated()'],
 	[pattern: '/fiscal/*',		 access: ['permitAll']],
 
 	[pattern: '/mesa/*',		 access: ['ROLE_ADMIN', 'ROLE_ADMIN_COMUNA']],
@@ -42,8 +42,12 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/comuna/delete',  access: ['ROLE_ADMIN']],
 	[pattern: '/comuna/*',		 access: ['ROLE_ADMIN', 'ROLE_ADMIN_COMUNA']],
 
+	[pattern: 'fuerzaPolitica/getSelectFuerzasByComuna*', access: ['ROLE_ADMIN', 'ROLE_ADMIN_COMUNA']],
 	[pattern: '/fuerzaPolitica/*',access: ['ROLE_ADMIN']],
+	[pattern: '/partido/*',access: ['ROLE_ADMIN']],
 
+
+	[pattern: '/fiscalApi/*',	 access: ['ROLE_FISCAL_GENERAL', 'ROLE_FISCAL_MESA']],
 	[pattern: '/api/login',		 access:['permitAll']],
 	[pattern: '/api/validate',	 access:['permitAll']],
 	[pattern: '/api/logout',	 access:['permitAll']],

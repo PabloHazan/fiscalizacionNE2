@@ -1,0 +1,11 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="pablo (generated)" id="1506268370888-1">
+        <addColumn tableName="escuela">
+            <column name="fuerza_politica_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="pablo (generated)" id="1506268370888-2">
+        <addForeignKeyConstraint baseColumnNames="fuerza_politica_id" baseTableName="escuela" constraintName="FKeqrlmujc4gf6fklwbr4o5x91e" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="fuerza_politica"/>
+    </changeSet>
+</databaseChangeLog>

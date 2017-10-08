@@ -1,6 +1,7 @@
 <tr id="fuerzaPoliticaRow${index}">
     <g:hiddenField name="fuerzasPoliticas.${index}.id" value="${fuerzaPolitica?.id}"/>
     <g:hiddenField name="fuerzasPoliticas.${index}.version" value="${fuerzaPolitica?.version}"/>
+    <g:hiddenField name="fuerzasPoliticas.${index}.color" value="${fuerzaPolitica?.color}"/>
 
     <g:set var="isNew" value="${!fuerzaPolitica?.id}"/>
     <th

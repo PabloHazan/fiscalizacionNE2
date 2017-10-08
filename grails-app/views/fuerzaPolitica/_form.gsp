@@ -15,7 +15,7 @@
                    id="inputColor"
                    name="color"
                    onchange="onChangeColor()"
-                   value='#${fuerzaPolitica?.color ? Long.toHexString(fuerzaPolitica?.color) : Long.toHexString(8888888)}'
+                   value='#${fuerzaPolitica?.color ? Long.toHexString(fuerzaPolitica?.color) : "FFFFFF"}'
                 ${modoEdicion ? "" : 'disabled="disabled"'}
             />
             <g:hiddenField id="hfColor" name="color" value="${fuerzaPolitica?.color}"/>

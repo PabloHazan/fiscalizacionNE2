@@ -93,4 +93,19 @@ class FuerzaPoliticaController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    def getSelectFuerzasByComuna(){
+        Boolean modoEdicion = params.getBoolean("modoEdicion")
+        String name = params.name
+        String id = params.id
+
+        Long comunaId = params.comunaId?.isNumber() ? params.comunaId.toLong() : null
+        render(template: 'fuerzaPoliticaSelect',
+                model: [
+                        comunaId: comunaId,
+                        modoEdicion: modoEdicion,
+                        name: name,
+                        id: id
+                ])
+    }
 }

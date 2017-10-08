@@ -10,4 +10,6 @@
     <include file="DELTA_009_ESCUELA.xml"/>
     <include file="DELTA_010_COMUNA.xml"/>
     <include file="DELTA_011_FUERZA_POLITICA.xml"/>
+    <include file="DELTA_012_ESCUELA_FUERZA_POLITICA.xml"/>
+    <include file="DELTA_0013_AGREGAR_COLOR_PARTIDO_E_INFORMANTE_A_UR_E_INFORMANTE_A_URNA.xml"/>
 </databaseChangeLog>

@@ -48,6 +48,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails.plugins:spring-security-core:3.2.0.M1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails.plugins:spring-security-rest:2.0.0.M2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails.plugins:mail:2.0.0.RC6" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails.plugins:gson:zip:1.1.4" level="project" />
     <orderEntry type="library" name="Gradle: org.grails:grails-gorm-testing-support:1.0.0" level="project" />
     <orderEntry type="library" name="Gradle: org.grails.plugins:geb:1.1.1" level="project" />
     <orderEntry type="library" name="Gradle: org.grails:grails-web-testing-support:1.0.0" level="project" />
@@ -120,6 +121,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Gradle: commons-codec:commons-codec:1.10" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: javax.mail:javax.mail-api:1.5.6" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.sun.mail:javax.mail:1.5.6" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.code.gson:gson:2.8.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails:grails-plugin-domain-class:3.3.0" level="project" />
     <orderEntry type="library" name="Gradle: org.grails:grails-datastore-gorm-test:6.1.6.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.grails:grails-testing-support:1.0.0" level="project" />
@@ -129,8 +131,8 @@
     <orderEntry type="library" scope="PROVIDED" name="Gradle: ch.qos.logback:logback-core:1.1.11" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.springframework:spring-aop:4.3.9.RELEASE" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: javax.el:el-api:2.1.2-b03" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.springframework:spring-expression:4.3.9.RELEASE" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: javax.el:el-api:2.1.2-b03" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.codehaus.groovy:groovy-xml:2.4.11" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.tomcat:tomcat-juli:8.5.15" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.bertramlabs.plugins:asset-pipeline-core:2.14.2" level="project" />
@@ -146,22 +148,22 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: xalan:xalan:2.7.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails:grails-web-url-mappings:3.3.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails:grails-web-mvc:3.3.0" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.commons:commons-lang3:3.4" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails:grails-web-gsp:3.3.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.commons:commons-lang3:3.4" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails:grails-web-sitemesh:3.3.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.httpcomponents:httpmime:4.5.3" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails:grails-plugin-mimetypes:3.3.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: net.sourceforge.htmlunit:htmlunit-core-js:2.17" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails:grails-plugin-validation:3.3.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: xerces:xercesImpl:2.11.0" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.springframework:spring-jdbc:4.3.9.RELEASE" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails:grails-plugin-validation:3.3.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: net.sourceforge.nekohtml:nekohtml:1.9.22" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.springframework:spring-jdbc:4.3.9.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.codehaus.groovy:groovy-sql:2.4.11" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: net.sourceforge.cssparser:cssparser:0.9.16" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails:grails-datastore-gorm:6.1.6.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.apache.tomcat.embed:tomcat-embed-logging-log4j:8.5.2" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails:grails-datastore-gorm-validation:6.1.6.RELEASE" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.springframework:spring-web:4.3.9.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.grails:grails-datastore-gorm-hibernate-core:6.1.6.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.hibernate:hibernate-validator:5.3.5.Final" level="project" />
@@ -206,7 +208,6 @@
     <orderEntry type="library" name="Gradle: org.gebish:geb-waiting:1.1.1" level="project" />
     <orderEntry type="library" name="Gradle: org.jodd:jodd-lagarto:3.7.1" level="project" />
     <orderEntry type="library" name="Gradle: cglib:cglib-nodep:2.1_3" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.0" level="project" />
     <orderEntry type="library" name="Gradle: org.seleniumhq.selenium:selenium-api:2.53.1" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpclient:4.5.3" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:guava:19.0" level="project" />
@@ -218,8 +219,8 @@
     <orderEntry type="library" name="Gradle: org.gebish:geb-exceptions:1.1.1" level="project" />
     <orderEntry type="library" name="Gradle: org.jodd:jodd-core:3.7.1" level="project" />
     <orderEntry type="library" name="Gradle: org.jodd:jodd-log:3.7.1" level="project" />
-    <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpcore:4.4.6" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.w3c.css:sac:1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpcore:4.4.6" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.jetty:jetty-util:9.4.5.v20170502" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.jetty:jetty-io:9.4.5.v20170502" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.eclipse.jetty:jetty-client:9.4.5.v20170502" level="project" />

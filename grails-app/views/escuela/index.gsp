@@ -18,11 +18,58 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${escuelaList}" />
 
-            <div class="pagination">
-                <g:paginate total="${escuelaCount ?: 0}" />
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>
+                                Escuela
+                            </th>
+                            <th>
+                                Fuerza responsable
+                            </th>
+                            <th>
+                                Fiscal
+                            </th>
+                            <th>
+                                Mesas
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <g:each in="${escuelas}" var="escuela">
+                            <tr>
+                                <th>
+                                    <g:link action="show" id="${escuela.id}">
+                                        ${escuela.numero}
+                                    </g:link>
+                                </th>
+                                <th>
+                                    ${escuela.fuerzaPolitica?.nombre}
+                                </th>
+                                <th>
+                                    ${escuela.fiscal?.username}
+                                </th>
+                                <th>
+                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#mesasEscuela${escuela.numero}" aria-expanded="false" aria-controls="mesasEscuela${escuela.numero}">
+                                        <i class="glyphicon glyphicon-info-sign"></i>
+                                    </button>
+                                    <ul class="list-group collapse" id="mesasEscuela${escuela.numero}">
+                                        <g:each in="${escuela.mesas}" var="mesa">
+                                            <li class="list-group-item">${mesa.numero}</li>
+                                        </g:each>
+                                    </ul>
+                                </th>
+                            </tr>
+                        </g:each>
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
+
         </div>
     </body>
 </html>

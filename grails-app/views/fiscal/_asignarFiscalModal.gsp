@@ -27,6 +27,7 @@
                                           optionValue="numero"
                                           optionKey="id"
                                           noSelection="['':'-Seleccione una mesa-']"
+                                          onclick="mostrarEscuelas()"
                                 />
                             </div>
                             <div id="seccionGeneral" class="col-md-6">

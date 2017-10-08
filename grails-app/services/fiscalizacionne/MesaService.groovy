@@ -1,35 +1,27 @@
 package fiscalizacionne
 
-import command.MesaCommand
+import command.MesaEscuelaCommand
+import dto.response.MesaDTO
 
 class MesaService {
 
     def crearMesa(Mesa mesa){
-        println "guardar mesa"
         mesa.save(failOnError: true)
-        println "mesa guardada"
         Urna urna = new Urna()
         urna.mesa = mesa
         urna.save(failOnError:true)
         Partido.all?.forEach{ partido ->
-            println partido.id
             Boleta boleta = new Boleta()
             boleta.partido = partido
-            println "partido asignado"
             urna.addToBoletas(boleta)
-            println "urna tiene boleta"
             boleta.save(failOnError:true)
-            println "boleta guardada"
             urna.save(failOnError:true)
-            println "urna guardada"
-
         }
         urna.save(failonerror: true)
     }
 
     def borrarMesa(Mesa mesa){
         def urna = Urna.findByMesa(mesa)
-        println urna.id
         urna.boletas?.each {boleta ->
             boleta.delete(flush:true)
         }
@@ -37,19 +29,44 @@ class MesaService {
         mesa.delete(flush:true)
     }
 
-    MesaCommand get(Long id){
+    MesaEscuelaCommand get(Long id){
         Mesa mesa = Mesa.get(id)
-        MesaCommand mesaCommand = new MesaCommand()
+        MesaEscuelaCommand mesaCommand = new MesaEscuelaCommand()
         mesaCommand.id = mesa.id
         mesaCommand.versionValue = mesa.version
         mesaCommand.numero = mesa.numero
         return mesaCommand
     }
 
-    List<MesaCommand> get(List<Long> ids){
-        List<MesaCommand> mesas = []
+    List<MesaEscuelaCommand> get(List<Long> ids){
+        List<MesaEscuelaCommand> mesas = []
         ids.each {id -> mesas.add(get(id))}
         return mesas
+    }
+
+    Long save(MesaEscuelaCommand mesaCommand){
+        Mesa mesa = new Mesa()
+        mesa.id = mesaCommand.id
+        mesa.version = mesaCommand.versionValue
+        mesa.numero = mesaCommand.numero
+        mesa.escuela = mesaCommand.escuela
+        crearMesa(mesa)
+        return mesa.id
+    }
+
+    List<Long> save(List<MesaEscuelaCommand> mesas){
+        List<Long> mesasIds = []
+        mesas.each {mesa ->
+            mesasIds << save(mesa)
+        }
+        return mesasIds
+    }
+
+    MesaDTO toResponseDTO(Mesa mesa){
+        MesaDTO mesaDTO = new MesaDTO()
+        mesaDTO.mesa = mesa.numero
+        mesaDTO.escuela = mesa.escuela.numero
+        return mesaDTO
     }
 
 }

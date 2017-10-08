@@ -25,10 +25,11 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.escuela}" method="POST">
+            <g:form action="save" method="POST">
                 <fieldset class="form">
-                    %{--<f:all bean="escuela"/>--}%
-                    <g:field type="number" name="numero"/>
+                    <g:render template="form" model="[
+                            escuela: escuela,
+                            modoEdicion: true]"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

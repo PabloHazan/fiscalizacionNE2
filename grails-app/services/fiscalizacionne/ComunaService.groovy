@@ -1,7 +1,7 @@
 package fiscalizacionne
 
 import command.ComunaCommand
-import command.EscuelaCommand
+import command.EscuelaComunaCommand
 
 class ComunaService {
 
@@ -15,7 +15,7 @@ class ComunaService {
         comunaCommand.id = comuna.id
         comunaCommand.versionValue = comuna.version
         comunaCommand.numero = comuna.numero
-        comunaCommand.escuelas = escuelaService.get((comuna.escuelas*.id).toList())
+        comunaCommand.escuelas = escuelaService.getEscuelaComuna((comuna.escuelas*.id).toList())
         comunaCommand.fuerzasPoliticas.addAll(comuna.fuerzasPoliticas)
         comunaCommand.admin = fiscalService.getFiscal(comuna.admin.id)
         return comunaCommand
@@ -28,7 +28,6 @@ class ComunaService {
         comuna.admin = Fiscal.get(adminId)
         comuna.save(failOnError:true)
 
-
         comunaCommand.escuelas*.comuna = comuna
         List<Long> escuelasId = escuelaService.save(comunaCommand.escuelas)
         escuelasId.each {Long escuelaId->
@@ -37,8 +36,8 @@ class ComunaService {
         }
 
         fuerzaPoliticaService.save(comunaCommand.fuerzasPoliticas)
-        comunaCommand.fuerzasPoliticas.each {fuerzaPolitica -> comuna.addToFuerzasPoliticas(fuerzaPolitica)}
-        comuna.save(failOnError:true)
+        comunaCommand.fuerzasPoliticas.each { fuerzaPolitica -> comuna.addToFuerzasPoliticas(fuerzaPolitica) }
+        comuna.save(flush: true, failOnError: true)
         comunaCommand.id = comuna.id
         comunaCommand.versionValue = comuna.version
 
@@ -55,15 +54,28 @@ class ComunaService {
         escuelasEliminadas.each { escuela -> comuna.removeFromEscuelas(escuela) }
         escuelasEliminadas*.delete(flush: true)
 
-        List<EscuelaCommand> escuelasNuevas = comunaCommand.escuelas.findAll { !it.id }
+        List<EscuelaComunaCommand> escuelasNuevas = comunaCommand.escuelas.findAll { !it.id }
         escuelasNuevas*.comuna = comuna
         escuelaService.save(escuelasNuevas)
 
-        fuerzaPoliticaService.save(comunaCommand.fuerzasPoliticas)
-        fuerzaPoliticaService.save(comunaCommand.fuerzasPoliticas)
-        comunaCommand.fuerzasPoliticas.each {fuerzaPolitica -> comuna.addToFuerzasPoliticas(fuerzaPolitica)}
+        fuerzaPoliticaService.save(comunaCommand.fuerzasPoliticas.findAll {fuerzaPolitica -> !fuerzaPolitica.id})
+        def fuerzasAgregadas = comunaCommand.fuerzasPoliticas.findAll {fuerzaPolitica ->
+            !comuna.fuerzasPoliticas.any {f -> f.id == fuerzaPolitica.id}
+        }
+        fuerzasAgregadas.each { fuerzaPolitica -> comuna.addToFuerzasPoliticas(fuerzaPolitica) }
+        def fuerzasEliminadas = comuna.fuerzasPoliticas.findAll { fuerzaPolitica ->
+            !comunaCommand.fuerzasPoliticas.any {f -> f.id == fuerzaPolitica.id }
+        }
+        fuerzasEliminadas.each {fuerzaPolitica -> comuna.removeFromFuerzasPoliticas(fuerzaPolitica)}
         comuna.save(flush: true, failOnError:true)
         return comuna.id
 
+    }
+
+    Comuna getByAdministrador(Fiscal fiscal){
+        if (!fiscal)
+            return null
+        Comuna comuna = Comuna.findByAdmin(fiscal)
+        return comuna
     }
 }

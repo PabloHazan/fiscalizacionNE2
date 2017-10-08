@@ -2,6 +2,9 @@ package fiscalizacionne
 
 import command.FiscalCommand
 import dto.FiscalListDTO
+import dto.response.MesaDTO
+import dto.response.ResultadoMesaDTO
+import dto.response.ResultadoPartidoMesaDTO
 import fiscalizacionne.TipoFiscalEnum
 import org.hibernate.id.GUIDGenerator
 import org.hibernate.transform.Transformers
@@ -12,6 +15,8 @@ class FiscalService {
 
     def sessionFactory
     def fiscalizacionNeMailService
+    def usuarioService
+    def mesaService
 
     Long crearFiscal(FiscalCommand fiscalCommand){
         Fiscal fiscal = new Fiscal()
@@ -21,7 +26,7 @@ class FiscalService {
         fiscal.accountExpired = false
         fiscal.accountLocked = false
         fiscal.enabled = true
-        String pass = UUID.randomUUID().toString()
+        String pass = UUID.randomUUID().toString().substring(0,6)
         fiscal.password =  pass
         fiscal.mail = fiscalCommand.mail
 
@@ -120,4 +125,36 @@ class FiscalService {
         fiscalRol.fiscal = fiscal
         fiscalRol.save(failOnError: true, flush:true)
     }
+
+    List<MesaDTO> getMesas(Fiscal fiscal){
+        List<MesaDTO> mesas = []
+        Mesa.findAllByFiscal(fiscal).each { Mesa mesa ->
+            return mesas.add(mesaService.toResponseDTO(mesa))
+        }
+        return mesas
+    }
+
+    void cargarResultados(Fiscal fiscal, List<ResultadoMesaDTO>resultadosMesas){
+        //obtengo de las mesas enviadas las que puede cargar el fiscal
+        Set<Mesa> mesas = Mesa.findAllByFiscalAndNumeroInList(fiscal, resultadosMesas*.mesa)
+        mesas.each {mesa ->
+            //consigo la urna de la mesa y los resultados de esa mesa
+            Urna urna = Urna.findByMesa(mesa)
+            List<ResultadoPartidoMesaDTO> resultadosPartidosMesa = resultadosMesas.find { resultadoMesa ->
+                resultadoMesa.mesa = mesa.numero
+            }.resultados
+            urna.boletas.each {boleta ->
+                //consigo los resultados del partido en la mesa y los cargo como boletas de la urna
+                ResultadoPartidoMesaDTO resultadoPartido = resultadosPartidosMesa.find {resultadoPartidoMesa ->
+                    resultadoPartidoMesa.partido == boleta.partido.id
+                }
+                boleta.legisladores = resultadoPartido.legisladores
+                boleta.diputados = resultadoPartido.diputados
+            }
+            //registro quien cargo la urna
+            urna.informante = fiscal
+            urna.save(flush: true)
+        }
+    }
+
 }

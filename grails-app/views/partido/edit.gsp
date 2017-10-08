@@ -29,7 +29,7 @@
             <g:form resource="${this.partido}" method="PUT">
                 <g:hiddenField name="version" value="${this.partido?.version}" />
                 <fieldset class="form">
-                    <f:all bean="partido"/>
+                    <g:render template="form" model="[partido: this.partido, modoEdicion: true]"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />

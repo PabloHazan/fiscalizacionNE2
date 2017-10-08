@@ -134,6 +134,9 @@ class FiscalController {
         [fiscal:fiscalService.getFiscal(fiscal.id)]
     }
 
+
+    def passwordEncoder
+
     def updatePass(Long id){
         Fiscal fiscal = Fiscal.get(id)
         String oldPass = params.oldPass
@@ -144,10 +147,10 @@ class FiscalController {
             redirect(action: 'index')
             return
         }
-        def fpel = springSecurityService?.passwordEncoder
-        if (!newPass.equals(repeatPass) || !fpel.encodePassword(oldPass).equals(fiscal.password)){
-            log.error "pass vieja invalida: ${!newPass.equals(repeatPass)}"
-            log.error "pass nueva no coincide ${fpel.encodePassword(oldPass).equals(fiscal.password)}"
+
+        if (!newPass.equals(repeatPass) || !passwordEncoder.isPasswordValid(fiscal.password, oldPass, null)){
+            log.error "pass vieja invalida: ${!passwordEncoder.isPasswordValid(fiscal.password, oldPass, null)}"
+            log.error "pass nueva no coincide ${!newPass.equals(repeatPass)}"
             redirect(action: 'index')
             return
         }
