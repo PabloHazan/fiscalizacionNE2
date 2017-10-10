@@ -3,6 +3,7 @@ package fiscalizacionne
 import common.ServiceException
 import dto.response.MesaDTO
 import dto.response.PartidoDTO
+import dto.response.ResultadoDTO
 import dto.response.ResultadoMesaDTO
 import grails.converters.JSON
 
@@ -12,6 +13,7 @@ class FiscalApiController {
     def usuarioService
     def fiscalService
     def partidoService
+    def resultadoService
 
     static allowedMethods = [cargarMesas: "POST"]
 
@@ -30,8 +32,8 @@ class FiscalApiController {
         Fiscal fiscal = usuarioService.getLoggedUser()
         List<ResultadoMesaDTO> resultadosMesas = getRequestDTO()
         try{
-            fiscalService.cargarResultados(fiscal, resultadosMesas)
-            render "OK"
+            List<Long> mesasActualizadas = fiscalService.cargarResultados(fiscal, resultadosMesas)
+            render mesasActualizadas as JSON
         }catch (ServiceException se){
             response.status = 403
             render se.message
@@ -44,7 +46,8 @@ class FiscalApiController {
     }
 
     def getResultados(){
-
+        List<ResultadoDTO> resultados = resultadoService.getResultados()
+        render resultados as JSON
     }
 
     private <Request> Request getRequestDTO(){

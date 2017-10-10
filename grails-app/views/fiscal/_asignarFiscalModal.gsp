@@ -22,13 +22,7 @@
                                 />
                             </div>
                             <div id="seccionGeneral" class="col-md-6">
-                                <label for="escuelaSeleccionada">Escuela: </label>
-                                <g:select name="idEscuela" id="escuelaSeleccionada" from="${fiscalizacionne.Escuela.findAllByFiscalIsNull()}"
-                                          optionValue="numero"
-                                          optionKey="id"
-                                          noSelection="['':'-Seleccione una escuela-']"
-                                          onChange="changeEscuela()"
-                                />
+
                             </div>
                         </div>
                     </div>
@@ -72,9 +66,11 @@
     function changedTipo(){
         var tipoSeleccionado = $('#tipoFiscalSeleccionado').val();
         if(tipoSeleccionado == '${fiscalizacionne.TipoFiscalEnum.GENERAL.authority}'){
+            obtenerEscuelas(tipoSeleccionado);
             mostrarSeccionGeneral();
 
         } else if (tipoSeleccionado == '${fiscalizacionne.TipoFiscalEnum.MESA.authority}'){
+            obtenerEscuelas(tipoSeleccionado);
             mostrarSeccionGeneral();
             changeEscuela();
         } else {
@@ -91,7 +87,21 @@
         $('#seccionMesa').hide();
         $('#seccionGeneral').hide();
     }
-    
+
+    function obtenerEscuelas(tipoSeleccionado){
+        var url = document.location.origin + "/fiscal/getEscuelasPorTipoFiscal";
+        $.ajax({
+            url: url,
+            data: {
+                authority: tipoSeleccionado
+            },
+            success: function (data) {
+                $("#seccionGeneral").html(data);
+                $("#seccionGeneral").show();
+            }
+        });
+    }
+
     function changeEscuela() {
         var tipoSeleccionado = $('#tipoFiscalSeleccionado').val();
         if (tipoSeleccionado == '${fiscalizacionne.TipoFiscalEnum.MESA.authority}'){

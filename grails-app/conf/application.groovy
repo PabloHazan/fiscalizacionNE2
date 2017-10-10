@@ -49,6 +49,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/partido/*',access: ['ROLE_ADMIN']],
 
 
+	[pattern: '/fiscalApi/getResultados', access: ['ROLE_FISCAL_GENERAL', 'ROLE_FISCAL_MESA', 'ROLE_ADMIN', 'ROLE_ADMIN_COMUNA']],
 	[pattern: '/fiscalApi/*',	 access: ['ROLE_FISCAL_GENERAL', 'ROLE_FISCAL_MESA']],
 	[pattern: '/api/login',		 access:['permitAll']],
 	[pattern: '/api/validate',	 access:['permitAll']],

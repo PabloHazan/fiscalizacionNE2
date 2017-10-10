@@ -55,6 +55,10 @@ class MesaController {
             return
         }
 
+        //Todo: si cambio el fiscal al anterior asingarle null en tipo
+//        Fiscal fiscalAnterior = Mesa.get(mesa.id).fiscal
+//        FiscalRol.findByFiscal(fiscalAnterior)?.delete(flush: true)
+
         bindMesa(mesa)
         mesa.validate()
         if (mesa.hasErrors()) {
@@ -62,7 +66,8 @@ class MesaController {
             respond mesa.errors, view:'edit'
             return
         }
-
+        if(mesa.fiscal)
+            fiscalService.desasignarFiscalizacion(mesa.fiscal?.id)
         mesa.save flush:true
 
         request.withFormat {

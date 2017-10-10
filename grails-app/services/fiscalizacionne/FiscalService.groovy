@@ -140,27 +140,36 @@ class FiscalService {
         return mesas
     }
 
-    void cargarResultados(Fiscal fiscal, List<ResultadoMesaDTO>resultadosMesas){
+    List<Long> cargarResultados(Fiscal fiscal, List<ResultadoMesaDTO>resultadosMesas){
+
+        List<Long> numeroMesasCargadas = []
+
         //obtengo de las mesas enviadas las que puede cargar el fiscal
-        Set<Mesa> mesas = Mesa.findAllByFiscalAndNumeroInList(fiscal, resultadosMesas*.mesa)
+        Set<Mesa> mesas = usuarioService.isFiscalMesa(fiscal) ?
+                [Mesa.findByFiscalAndNumeroInList(fiscal, resultadosMesas*.mesa)].toSet() :
+                Escuela.findByFiscal(fiscal)*.mesas.find { mesa -> resultadosMesas*.mesa.contains(mesa.numero)}
         mesas.each {mesa ->
             //consigo la urna de la mesa y los resultados de esa mesa
             Urna urna = Urna.findByMesa(mesa)
-            List<ResultadoPartidoMesaDTO> resultadosPartidosMesa = resultadosMesas.find { resultadoMesa ->
-                resultadoMesa.mesa = mesa.numero
-            }.resultados
-            urna.boletas.each {boleta ->
-                //consigo los resultados del partido en la mesa y los cargo como boletas de la urna
-                ResultadoPartidoMesaDTO resultadoPartido = resultadosPartidosMesa.find {resultadoPartidoMesa ->
-                    resultadoPartidoMesa.partido == boleta.partido.id
+            if (!(urna.informante && usuarioService.isFiscalMesa(fiscal) && fiscal != urna.informante)){
+                List<ResultadoPartidoMesaDTO> resultadosPartidosMesa = resultadosMesas.find { resultadoMesa ->
+                    resultadoMesa.mesa = mesa.numero
+                }.resultados
+                urna.boletas.each {boleta ->
+                    //consigo los resultados del partido en la mesa y los cargo como boletas de la urna
+                    ResultadoPartidoMesaDTO resultadoPartido = resultadosPartidosMesa.find {resultadoPartidoMesa ->
+                        resultadoPartidoMesa.partido == boleta.partido.id
+                    }
+                    boleta.legisladores = resultadoPartido.legisladores
+                    boleta.diputados = resultadoPartido.diputados
                 }
-                boleta.legisladores = resultadoPartido.legisladores
-                boleta.diputados = resultadoPartido.diputados
+                //registro quien cargo la urna
+                urna.informante = fiscal
+                urna.save(flush: true)
+                numeroMesasCargadas << mesa.numero
             }
-            //registro quien cargo la urna
-            urna.informante = fiscal
-            urna.save(flush: true)
         }
+        return numeroMesasCargadas
     }
 
     List<Fiscal> getFiscalesDisponibles(){
@@ -174,6 +183,27 @@ class FiscalService {
                     "where e.fiscal = f or m.fiscal = f) "
         List<Fiscal> fiscales = Fiscal.findAll(query).toList()
         return fiscales
+    }
+
+    void desasignarFiscalizacion(Long fiscalId){
+        Fiscal fiscal = Fiscal.get(fiscalId)
+        FiscalRol fiscalRol = FiscalRol.findByFiscal(fiscal)
+        if(fiscalRol){
+            fiscalizacionne.TipoFiscalEnum tipoFiscal = fiscalizacionne.TipoFiscalEnum.findByAuthority(fiscalRol.rol.authority)
+            fiscalRol.delete(flush: true)
+            switch (tipoFiscal) {
+                case fiscalizacionne.TipoFiscalEnum.GENERAL:
+                    Escuela escuela = Escuela.findByFiscal(fiscal)
+                    escuela.fiscal = null
+                    escuela.save(flush: true)
+                    break
+                case fiscalizacionne.TipoFiscalEnum.MESA:
+                    Mesa mesa = Mesa.findByFiscal(fiscal)
+                    mesa.fiscal = null
+                    mesa.save(flush:true)
+                    break
+            }
+        }
     }
 
 }

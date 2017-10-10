@@ -15,7 +15,6 @@ class FiscalController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
 
-        //def query = "from Fiscal as f where not exists(select 1 from FiscalRol as fr where fr.fiscal = f and fr.rol.authority in ('ROLE_ADMIN', 'ROLE_ADMIN_COMUNA'))"
         def fiscalList = fiscalService.getFiscales()
         [fiscalList:fiscalList, fiscalCount: fiscalList.size()]
     }
@@ -95,6 +94,7 @@ class FiscalController {
         fiscalizacionne.TipoFiscalEnum tipoFiscalEnum = fiscalizacionne.TipoFiscalEnum.findByAuthority(params.tipoFiscal)
 
         try {
+            desasignarFiscalizacionPrevia()
             switch (tipoFiscalEnum){
                 case fiscalizacionne.TipoFiscalEnum.GENERAL:
                     asignarFiscalEscuela()
@@ -115,14 +115,16 @@ class FiscalController {
         Long idFiscal = params.idFiscalSeleccionado.toLong()
         Long idMesa = params.idMesa.toLong()
         fiscalService.asignarFiscalMesa(idFiscal, idMesa)
-        return
     }
 
     private void asignarFiscalEscuela(){
         Long idFiscal = params.idFiscalSeleccionado.toLong()
         Long idEscuela = params.idEscuela.toLong()
         fiscalService.asignarFiscalGeneral(idFiscal, idEscuela)
-        return
+    }
+
+    private desasignarFiscalizacionPrevia(){
+        fiscalService.desasignarFiscalizacion(params.getLong("idFiscalSeleccionado"))
     }
 
     def editPass(Long id){
@@ -160,9 +162,22 @@ class FiscalController {
     }
 
     def getMesasPorEscuela(){
-        println params
         Long escuelaId = params.escuelaId.toLong()
         List<Mesa> mesas = Escuela.get(escuelaId).mesas.findAll {mesa -> mesa.fiscal == null}.toList()
         render(template: "selectMesasPorEscuela", model: [mesas: mesas])
+    }
+
+    def getEscuelasPorTipoFiscal(){
+        fiscalizacionne.TipoFiscalEnum tipoFiscal = fiscalizacionne.TipoFiscalEnum.findByAuthority(params.authority)
+        List<Escuela> escuelas
+        switch (tipoFiscal){
+            case fiscalizacionne.TipoFiscalEnum.GENERAL:
+                escuelas = Escuela.findAllByFiscalIsNull()
+                break
+            case fiscalizacionne.TipoFiscalEnum.MESA:
+                escuelas = Escuela.all
+                break
+        }
+        render(template: 'selectEscuelas', model: [escuelas: escuelas])
     }
 }
