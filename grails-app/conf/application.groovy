@@ -14,6 +14,8 @@ grails.plugin.springsecurity.rest.token.storage.gorm.tokenValuePropertyName = 't
 grails.plugin.springsecurity.rest.token.storage.gorm.usernamePropertyName = 'username'
 grails.plugin.springsecurity.rest.login.useJsonCredentials = true
 grails.plugin.springsecurity.rest.login.failureStatusCode = 403
+grails.plugin.springsecurity.logout.postOnly = false
+
 
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],

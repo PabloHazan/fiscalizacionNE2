@@ -38,7 +38,10 @@
             </div>
             <sec:ifLoggedIn>
                 <div class="pull-right">
-                    <g:link controller='logout' action='index' method="POST">Chau</g:link>
+                    <a href="${createLink(controller:'logout', action: 'index')}">
+                        <i class="glyphicon glyphicon-off"></i>
+                        Chau
+                    </a>
                 </div>
             </sec:ifLoggedIn>
         </div>

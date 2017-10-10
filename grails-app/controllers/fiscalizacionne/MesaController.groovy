@@ -7,10 +7,10 @@ class MesaController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def mesaService
+    def fiscalService
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Mesa.list(params), model:[mesaCount: Mesa.count()]
+        [mesas: Mesa.all]
     }
 
     def show(Mesa mesa) {
@@ -18,16 +18,13 @@ class MesaController {
     }
 
     def create() {
-        respond new Mesa(params)
+        [mesa: new Mesa(), fiscales: fiscalService.getFiscalesDisponibles()]
     }
 
-    def save(Mesa mesa) {
-        mesa.numero = params.numero.toLong()
-        if (mesa == null) {
-            notFound()
-            return
-        }
-
+    def save() {
+        Mesa mesa = new Mesa(params)
+        bindMesa(mesa)
+        mesa.validate()
         if (mesa.hasErrors()) {
             respond mesa.errors, view:'create'
             return
@@ -44,7 +41,11 @@ class MesaController {
     }
 
     def edit(Mesa mesa) {
-        respond mesa
+        List<Fiscal> fiscales = fiscalService.getFiscalesDisponibles()
+        if (mesa.fiscal){
+            fiscales << mesa.fiscal
+        }
+        [mesa: mesa, fiscales: fiscales]
     }
 
     def update(Mesa mesa) {
@@ -54,6 +55,8 @@ class MesaController {
             return
         }
 
+        bindMesa(mesa)
+        mesa.validate()
         if (mesa.hasErrors()) {
             transactionStatus.setRollbackOnly()
             respond mesa.errors, view:'edit'
@@ -93,5 +96,10 @@ class MesaController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    private void bindMesa(Mesa mesa) {
+        mesa.escuela = Escuela.get(params.getLong("escuelaId"))
+        mesa.fiscal = Fiscal.get(params.getLong("fiscalId"))
     }
 }

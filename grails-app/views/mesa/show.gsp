@@ -19,7 +19,7 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="mesa" />
+            <g:render template="form" model="[mesa: this.mesa, modoEdicion: false]"/>
             <g:form resource="${this.mesa}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.mesa}"><g:message code="default.button.edit.label" default="Edit" /></g:link>

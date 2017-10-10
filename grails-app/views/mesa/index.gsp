@@ -18,11 +18,47 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${mesaList}" />
 
-            <div class="pagination">
-                <g:paginate total="${mesaCount ?: 0}" />
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>
+                                Mesa N°
+                            </th>
+                            <th>
+                                Escuela N°
+                            </th>
+                            <th>
+                                Fiscal
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <g:each in="${mesas}" var="mesa">
+                            <tr>
+                                <th>
+                                    <g:link action="show" id="${mesa.id}">
+                                        ${mesa.numero}
+                                    </g:link>
+                                </th>
+                                <th>
+                                    <g:link controller="escuela" action="show" id="${mesa.escuela.id}">
+                                        ${mesa.escuela.numero}
+                                    </g:link>
+                                </th>
+                                <th>
+                                    ${mesa.fiscal?.username}
+                                </th>
+                            </tr>
+                        </g:each>
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
+
         </div>
     </body>
 </html>

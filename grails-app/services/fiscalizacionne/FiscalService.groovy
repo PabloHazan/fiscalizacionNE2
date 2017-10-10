@@ -163,4 +163,17 @@ class FiscalService {
         }
     }
 
+    List<Fiscal> getFiscalesDisponibles(){
+        String query = "select distinct f from FiscalRol as fr " +
+                "join fr.fiscal as f " +
+                "join fr.rol as r " +
+                "where r.authority in ('ROLE_FISCAL_GENERAL', 'ROLE_FISCAL_MESA') and " +
+                "not exists(" +
+                    "select 1 from Escuela e " +
+                    "join e.mesas m " +
+                    "where e.fiscal = f or m.fiscal = f) "
+        List<Fiscal> fiscales = Fiscal.findAll(query).toList()
+        return fiscales
+    }
+
 }

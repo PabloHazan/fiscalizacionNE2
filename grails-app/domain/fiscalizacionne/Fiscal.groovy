@@ -32,4 +32,6 @@ class Fiscal implements Serializable {
     static mapping = {
 	    password column: '`password`'
     }
+
+
 }

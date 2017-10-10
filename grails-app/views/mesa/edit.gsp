@@ -29,7 +29,7 @@
             <g:form resource="${this.mesa}" method="PUT">
                 <g:hiddenField name="version" value="${this.mesa?.version}" />
                 <fieldset class="form">
-                    <f:all bean="mesa"/>
+                    <g:render template="form" model="[mesa: mesa, modoEdicion: true, fiscales: fiscales]"/>
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
