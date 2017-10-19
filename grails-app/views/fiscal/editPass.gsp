@@ -27,13 +27,18 @@
         </ul>
     </g:hasErrors>
     <g:form method="POST" action="updatePass">
-        <g:render template="fiscalForm" model="[fiscal:fiscal, modoEdicion:false]"/>
-        <label for="oldPass">Password anterior</label>
-        <g:passwordField id="oldPass" name="oldPass"/>
-        <label for="newPass">Password nuevo</label>
-        <g:passwordField id="newPass" name="newPass"/>
-        <label for="repeatPass">Repita nuevo password</label>
-        <g:passwordField id="repeatPass" name="repeatPass"/>
+        <div class="row">
+            <div class="col-md-12">
+                <g:render template="fiscalForm" model="[fiscal:fiscal, modoEdicion:false]"/>
+                <label for="oldPass">Password anterior</label>
+                <g:passwordField id="oldPass" name="oldPass"/>
+                <label for="newPass">Password nuevo</label>
+                <g:passwordField id="newPass" name="newPass"/>
+                <label for="repeatPass">Repita nuevo password</label>
+                <g:passwordField id="repeatPass" name="repeatPass"/>
+            </div>
+        </div>
+        <br/>
         <fieldset class="buttons">
             <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
         </fieldset>

@@ -21,3 +21,11 @@
         </div>
     </fieldset>
 </div>
+<br/>
+<g:if test="${modoEdicion && this.fiscal?.id}">
+    <div class="row">
+        <div class="col-md-12">
+            <g:link action="editPass">Cambiar contraseña</g:link>
+        </div>
+    </div>
+</g:if>

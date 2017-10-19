@@ -127,12 +127,8 @@ class FiscalController {
         fiscalService.desasignarFiscalizacion(params.getLong("idFiscalSeleccionado"))
     }
 
-    def editPass(Long id){
+    def editPass(){
         Fiscal fiscal = springSecurityService.currentUser
-        if(id != fiscal.id){
-            redirect(action: 'index')
-            return
-        }
         [fiscal:fiscalService.getFiscal(fiscal.id)]
     }
 
