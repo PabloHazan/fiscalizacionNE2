@@ -48,7 +48,7 @@
     $(document).ready(function () {
         $("#comunaId").change(function () {
             var comunaId = parseInt($("#comunaId").val());
-            var url = document.location.origin + "/fuerzaPolitica/getSelectFuerzasByComuna";
+            var url = "${createLink(controller: 'fuerzaPolitica', action: 'getSelectFuerzasByComuna')}";
             $.ajax({
                 url: url,
                 data: {

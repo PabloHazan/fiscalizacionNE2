@@ -33,7 +33,7 @@
 
 <script type="application/javascript">
     function addFuerzaPoliticaRow(){
-        var url = document.location.origin + "/comuna/fuerzaPoliticaRow";
+        var url = "${createLink(controller: 'comuna', action: 'fuerzaPoliticaRow')}";
         var indexRow = parseInt($('#countFuerzasPoliticas').val())+1;
         $('#countFuerzasPoliticas').val(indexRow);
         $.ajax({

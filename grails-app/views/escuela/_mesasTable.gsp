@@ -25,7 +25,7 @@
 
 <script type="application/javascript">
     function addMesaRow(){
-        var url = document.location.origin + "/escuela/mesaRow";
+        var url = "${createLink(controller: 'escuela', action: 'mesaRow')}";
         var indexRow = parseInt($('#countMesas').val())+1;
         $('#countMesas').val(indexRow);
         $.ajax({

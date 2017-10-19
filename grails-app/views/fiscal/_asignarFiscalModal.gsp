@@ -89,7 +89,7 @@
     }
 
     function obtenerEscuelas(tipoSeleccionado){
-        var url = document.location.origin + "/fiscal/getEscuelasPorTipoFiscal";
+        var url = "${createLink(controller: 'fiscal', action: 'getEscuelasPorTipoFiscal')}";
         $.ajax({
             url: url,
             data: {
@@ -105,7 +105,7 @@
     function changeEscuela() {
         var tipoSeleccionado = $('#tipoFiscalSeleccionado').val();
         if (tipoSeleccionado == '${fiscalizacionne.TipoFiscalEnum.MESA.authority}'){
-            var url = document.location.origin + "/fiscal/getMesasPorEscuela";
+            var url = "${createLink(controller: 'fiscal', action: 'getMesasPorEscuela')}";
             var escuelaId = $("#escuelaSeleccionada").val();
             if (escuelaId){
                 $.ajax({

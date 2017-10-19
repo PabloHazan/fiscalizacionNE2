@@ -147,11 +147,14 @@ class FiscalService {
         //obtengo de las mesas enviadas las que puede cargar el fiscal
         Set<Mesa> mesas = usuarioService.isFiscalMesa(fiscal) ?
                 [Mesa.findByFiscalAndNumeroInList(fiscal, resultadosMesas*.mesa)].toSet() :
-                Escuela.findByFiscal(fiscal)*.mesas.find { mesa -> resultadosMesas*.mesa.contains(mesa.numero)}
+                Escuela.findByFiscal(fiscal).mesas.findAll { mesa -> resultadosMesas*.mesa.any{numeroMesa -> numeroMesa == mesa.numero}}
         mesas.each {mesa ->
             //consigo la urna de la mesa y los resultados de esa mesa
             Urna urna = Urna.findByMesa(mesa)
-            if (!(urna.informante && usuarioService.isFiscalMesa(fiscal) && fiscal != urna.informante)){
+            if (!urna.informante || //no esta cargada
+                    (urna.informante && fiscal == urna.informante) ||//corrige fiscal de la mesa
+                    (usuarioService.isFiscalGeneral(fiscal) && urna.mesa.escuela.fiscal == fiscal) //corrige fiscal general
+            ){
                 List<ResultadoPartidoMesaDTO> resultadosPartidosMesa = resultadosMesas.find { resultadoMesa ->
                     resultadoMesa.mesa = mesa.numero
                 }.resultados
