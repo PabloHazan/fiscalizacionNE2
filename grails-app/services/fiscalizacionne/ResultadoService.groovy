@@ -5,7 +5,7 @@ import dto.response.ResultadoDTO
 class ResultadoService {
 
     List<ResultadoDTO> getResultados() {
-        List<ResultadoDTO> resultados = Partido.all.inject([] as List<ResultadoDTO>) {
+        List<ResultadoDTO> resultados = Partido.findAllByComputa(true).inject([] as List<ResultadoDTO>) {
             List<ResultadoDTO> r, Partido partido ->
             r << new ResultadoDTO(['partido': partido.nombre, 'partidoId': partido.id, 'partidoNumero': partido.numero,
                                    'color': partido.color, 'computa': partido.computa])
