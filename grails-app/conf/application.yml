@@ -83,8 +83,6 @@ grails:
     plugin:
         databasemigration:
             changelogFileName: changelog.xml
-#            updateOnStart: true
-#            updateOnStartFileName: changelog.xml
     mail:
         host: smtp.gmail.com
         port: 465

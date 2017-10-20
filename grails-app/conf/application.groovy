@@ -50,7 +50,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 
 
 	[pattern: '/fiscalApi/getResultados', access: ['permitAll']],
-	[pattern: '/fiscalApi/*',	 access: ['ROLE_FISCAL_GENERAL', 'ROLE_FISCAL_MESA']],
+	[pattern: '/fiscalApi/*',	 access: ['ROLE_FISCAL_GENERAL', 'ROLE_FISCAL_MESA', 'ROLE_ADMIN_COMUNA']],
 	[pattern: '/api/login',		 access:['permitAll']],
 	[pattern: '/api/validate',	 access:['permitAll']],
 	[pattern: '/api/logout',	 access:['permitAll']],
@@ -70,4 +70,3 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 
 grails.plugin.springsecurity.rememberMe.persistent = true
 grails.plugin.springsecurity.rememberMe.persistentToken.domainClassName = 'fiscalizacionne.Token'
-

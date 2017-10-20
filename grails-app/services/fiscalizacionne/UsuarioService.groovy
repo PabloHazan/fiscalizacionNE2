@@ -37,6 +37,12 @@ class UsuarioService {
         }
     }
 
+    Boolean isAdminComuna(Fiscal usuario){
+        return usuario.authorities.any {role ->
+            role.authority.equals("ROLE_ADMIN_COMUNA")
+        }
+    }
+
     Fiscal getLoggedUser(){
         return springSecurityService.currentUser
     }

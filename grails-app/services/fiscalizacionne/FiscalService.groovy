@@ -136,6 +136,13 @@ class FiscalService {
             Escuela.findByFiscal(fiscal)?.mesas?.each {mesa ->
                 return mesas.add(mesaService.toResponseDTO(mesa))
             }
+        }else if(usuarioService.isAdminComuna(fiscal)){
+            Comuna comuna = Comuna.findByAdmin(fiscal)
+            Escuela.findAllByComuna(comuna).each { escuela ->
+                escuela.mesas.each {mesa ->
+                    mesas.add(mesaService.toResponseDTO(mesa))
+                }
+            }
         }
         return mesas
     }
@@ -145,16 +152,11 @@ class FiscalService {
         List<Long> numeroMesasCargadas = []
 
         //obtengo de las mesas enviadas las que puede cargar el fiscal
-        Set<Mesa> mesas = usuarioService.isFiscalMesa(fiscal) ?
-                [Mesa.findByFiscalAndNumeroInList(fiscal, resultadosMesas*.mesa)].toSet() :
-                Escuela.findByFiscal(fiscal).mesas.findAll { mesa -> resultadosMesas*.mesa.any{numeroMesa -> numeroMesa == mesa.numero}}
+        Set<Mesa> mesas = filtrarMesasValidasPorFiscal(fiscal, resultadosMesas)
         mesas.each {mesa ->
             //consigo la urna de la mesa y los resultados de esa mesa
             Urna urna = Urna.findByMesa(mesa)
-            if (!urna.informante || //no esta cargada
-                    (urna.informante && fiscal == urna.informante) ||//corrige fiscal de la mesa
-                    (usuarioService.isFiscalGeneral(fiscal) && urna.mesa.escuela.fiscal == fiscal) //corrige fiscal general
-            ){
+            if (puedeCargarUrna(urna, fiscal)){
                 List<ResultadoPartidoMesaDTO> resultadosPartidosMesa = resultadosMesas.find { resultadoMesa ->
                     resultadoMesa.mesa = mesa.numero
                 }.resultados
@@ -209,4 +211,44 @@ class FiscalService {
         }
     }
 
+    Boolean puedeCargarUrna(Urna urna, Fiscal fiscal){
+
+        if (!urna.informante) //no esta cargada
+            return true
+        if (fiscal == urna.informante)//corrige quien cargo
+            return true
+        if (usuarioService.isFiscalGeneral(fiscal) &&  //es fiscal general
+                urna.mesa.escuela.fiscal == fiscal && //de esa escuela
+                !usuarioService.isAdminComuna(urna.informante)) //y no la cargo el admin de comuna
+            return true
+        if(urna.mesa.escuela.comuna.admin == fiscal)
+            return true
+        return false
+    }
+
+    Set<Mesa> filtrarMesasValidasPorFiscal(Fiscal fiscal, List<ResultadoMesaDTO> resultadosMesas){
+        if (usuarioService.isFiscalMesa(fiscal))
+            return [Mesa.findByFiscalAndNumeroInList(fiscal, resultadosMesas*.mesa)].toSet()
+        else if (usuarioService.isFiscalGeneral(fiscal))
+            return Escuela.findByFiscal(fiscal).mesas.findAll { mesa ->
+                resultadosMesas*.mesa.any{
+                    numeroMesa -> numeroMesa == mesa.numero
+                }
+            }
+        else if (usuarioService.isAdminComuna(fiscal)){
+            Set<Mesa> mesasValidas = []
+            Comuna comuna = Comuna.findByAdmin(fiscal)
+            Set<Escuela> escuelas = Escuela.findAllByComuna(comuna)
+            escuelas.each {escuela ->
+                mesasValidas.addAll(escuela.mesas.findAll { mesa ->
+                    resultadosMesas*.mesa.any{
+                        numeroMesa -> numeroMesa == mesa.numero
+                    }
+                })
+            }
+            return mesasValidas
+        }
+
+        return []
+    }
 }
